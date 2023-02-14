@@ -1,0 +1,5 @@
+name: SuperSpring
+version: '${project.version}'
+main: plugin.SuperSpring.Main
+api-version: 1.19
+authors: [ Revelia ]

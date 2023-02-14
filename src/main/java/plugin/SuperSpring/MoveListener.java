@@ -27,11 +27,14 @@ public class MoveListener implements Listener {
 
         if (player.isSprinting()){
             if (player.getWalkSpeed() < 0.99) {
+                //Each tick add extra speed while springing
                 player.setWalkSpeed(player.getWalkSpeed() + 0.0025F);
             }
             if (player.getWalkSpeed() > 0.6){
                 Location loc_standing_plus_y = event.getPlayer().getLocation();
                 Block standing_block = loc_standing_plus_y.getBlock();
+
+                //Burn a block player standing
                 if (standing_block.getType() == Material.AIR) {
                     standing_block.setType(Material.FIRE);
                     player.addPotionEffect(PotionEffectType.FIRE_RESISTANCE.createEffect(5, 1));
@@ -39,10 +42,12 @@ public class MoveListener implements Listener {
                 }
             }
             if (player.getWalkSpeed() > 0.4) {
+                //Particle effect
                 player.spawnParticle(Particle.FLAME, player.getLocation().clone().subtract(0, 1, 0), round(5F * player.getWalkSpeed() * player.getWalkSpeed()), 1, 1, 1);
             }
         }
         else{
+            //Set default walk speed
             player.setWalkSpeed(0.2F);
         }
 
